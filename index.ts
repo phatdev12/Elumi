@@ -1,11 +1,12 @@
 import { WebSocket } from "./Websocket";
 import { EventEmitter } from "events";
 import fetch from "node-fetch";
-import {Endpoint} from "./Api";
+import {Endpoint, DiscordApi} from "./Api";
 import dotenv from "dotenv";
 
 (async function init() {
 	dotenv.config();
+
 
 	const endpointGateway = (await fetch(Endpoint.init("/gateway"))).json();
 	const ws = new WebSocket(`${(await endpointGateway)["url"]}/?v=10&encoding=json`);
